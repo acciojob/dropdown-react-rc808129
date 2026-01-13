@@ -5,7 +5,7 @@ const Card = ({name, description})=>{
 
   return(<div>
        
-       <div id="state-name">{name}</div>
+       <div id="state-title">{name}</div>
        <div id="state-description">{description}</div>
       
 

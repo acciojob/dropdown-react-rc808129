@@ -1,5 +1,6 @@
 import React, { useState,useReducer } from "react";
 import "./../styles/App.css";
+import Card from "./Card";
 
 
 const states = [{
@@ -140,9 +141,75 @@ const states = [{
 
 function App() 
 {
+
+	const [stateIndex, setStateIndex] = useState(0);
+	const [cityIndex, setCityIndex] = useState(0);
+  const [landmarkIndex, setLandmarkIndex] = useState(0);
+
+
+	const selectedState = states[stateIndex];
+const selectedCity = selectedState.city[cityIndex];
+const selectedLandmark = selectedCity.landmarks[landmarkIndex];
+
+
+
 	// Do not alter/remove main div
 	return (
 	<div id="main">
+	 <select id="state"
+	 value={stateIndex}
+	 onChange={(e)=>{
+		setStateIndex(Number(e.target.value))
+		setCityIndex(0)
+		setLandmarkIndex(0)
+	 }}>
+       {states.map((state, index) => (
+    <option key={index} value={index}>
+      {state.name}
+    </option>
+  ))}
+</select>
+
+      {/* CITY DROPDOWN */}
+      <select id="city"
+			 value={cityIndex}
+			 onChange={(e)=> {
+				setCityIndex(Number(e.target.value))
+				setLandmarkIndex(0)
+			 }}
+			>
+        {states[stateIndex].city.map((city, index) => (
+    <option key={index} value={index}>
+      {city.name}
+    </option>
+  ))}
+</select>
+
+     
+      <select id="landmark"
+			value={landmarkIndex}
+			onChange={(e) => setLandmarkIndex(Number(e.target.value))}>
+       {states[stateIndex].city[cityIndex].landmarks.map((lm, index) => (
+    <option key={index} value={index}>
+      {lm.name}
+    </option>
+  ))}
+</select>
+
+<Card
+  name={selectedState.name}
+  description={selectedState.description}
+/>
+
+<Card
+  name={selectedCity.name}
+  description={selectedCity.description}
+/>
+<Card 
+name={selectedLandmark.name}
+description={selectedLandmark.description}
+
+/>
 		
 	</div>
 	);

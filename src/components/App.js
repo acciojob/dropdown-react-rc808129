@@ -195,7 +195,7 @@ const selectedLandmark = selectedCity.landmarks[landmarkIndex];
     </option>
   ))}
 </select>
-
+{/* 
 <Card
   name={selectedState.name}
   description={selectedState.description}
@@ -209,7 +209,17 @@ const selectedLandmark = selectedCity.landmarks[landmarkIndex];
 name={selectedLandmark.name}
 description={selectedLandmark.description}
 
-/>
+/> */}
+
+<div id="state-title">{selectedState.name}</div>
+<div id="state-description">{selectedState.description}</div>
+
+<div id="city-title">{selectedCity.name}</div>
+<div id="city-description">{selectedCity.description}</div>
+
+<div id="landmark-title">{selectedLandmark.name}</div>
+<div id="landmark-description">{selectedLandmark.description}</div>
+
 		
 	</div>
 	);
